@@ -8,11 +8,14 @@ screen.title("Pong")
 screen.tracer(0)
 
 
-paddle = Paddle()
+rpaddle = Paddle((350, 0))
+lpaddle = Paddle((-350, 0))
 
 screen.listen()
-screen.onkey(paddle.up, "Up")
-screen.onkey(paddle.down, "Down")
+screen.onkey(rpaddle.up, "Up")
+screen.onkey(rpaddle.down, "Down")
+screen.onkey(lpaddle.up, "w")
+screen.onkey(lpaddle.down, "s")
 
 play = True
 while play:
