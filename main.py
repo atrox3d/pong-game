@@ -108,11 +108,15 @@ while not gameover:
     if ball.distance(lpaddle) < BALL_PADDLE_COLLISION and ball.xcor() <= LPADDLE_WALL:
         ball.xbounce()
     #
-    #   left right wall collision
+    #   right paddle miss
     #
-    if ball.xcor() > RIGHT_WALL or ball.xcor() < LEFT_WALL:
-        print("out")
-        gameover = True
+    if ball.xcor() > RIGHT_WALL:
+        ball.reset()
+    #
+    #   left paddle miss
+    #
+    if ball.xcor() < LEFT_WALL:
+        ball.reset()
 
 print("end while")
 screen.exitonclick()
