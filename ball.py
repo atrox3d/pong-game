@@ -1,6 +1,7 @@
 from turtle import Turtle
 
 BALLSTEP = 10
+MOVESPEED = 0.08
 
 
 class Ball(Turtle):
@@ -11,7 +12,7 @@ class Ball(Turtle):
         self.penup()
         self.xstep = BALLSTEP
         self.ystep = BALLSTEP
-        self.sleeptime = 0.08
+        self.move_speed = MOVESPEED
 
     def move(self):
         x = self.xcor() + self.xstep
@@ -24,18 +25,22 @@ class Ball(Turtle):
 
     def xbounce(self):
         self.xstep *= -1
+        self.move_speed *= 0.9
+        print(f"speedup: SLEEP_TIME = {self.move_speed}")
 
     def reset(self):
         self.goto(0, 0)
         self.xbounce()
+        self.move_speed = MOVESPEED
+        print(f"speedup: SLEEP_TIME = {self.move_speed}")
 
     def speedup(self):
-        if self.sleeptime - 0.01 > 0.0:
-            self.sleeptime -= 0.01
-            print(f"speedup: SLEEP_TIME = {self.sleeptime}")
+        if self.move_speed - 0.01 > 0.0:
+            self.move_speed -= 0.01
+            print(f"speedup: SLEEP_TIME = {self.move_speed}")
         else:
-            print(f"speedup: MIN REACH SLEEP_TIME = {self.sleeptime}")
+            print(f"speedup: MIN REACH SLEEP_TIME = {self.move_speed}")
 
     def speeddown(self):
-        self.sleeptime += 0.01
-        print(f"speeddown: SLEEP_TIME = {self.sleeptime}")
+        self.move_speed += 0.01
+        print(f"speeddown: SLEEP_TIME = {self.move_speed}")

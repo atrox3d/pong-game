@@ -74,7 +74,7 @@ screen.tracer(0)
 rpaddle = Paddle(RPADDLE_POSITION)
 lpaddle = Paddle(LPADDLE_POSITION)
 ball = Ball()
-print(f"SLEEP_TIME             : {ball.sleeptime         }")
+print(f"SLEEP_TIME             : {ball.move_speed         }")
 
 scoreboard = ScoreBoard()
 
@@ -90,7 +90,7 @@ screen.onkey(lpaddle.down, "s")
 gameover = False
 while not gameover:
     screen.update()
-    time.sleep(ball.sleeptime)
+    time.sleep(ball.move_speed)
     ball.move()
     #
     #   upper lower wall collision
