@@ -1,4 +1,5 @@
 import time
+from token import RIGHTSHIFT
 from turtle import Screen
 
 from ball import Ball
@@ -33,7 +34,7 @@ LOWER_WALL = Y_WALL_BALL_LIMIT * -1
 #   left and right wall
 #
 X_WALL_CENTER_DISTANCE = (SCREEN_WIDTH / 2)
-X_WALL_BALL_LIMIT = X_WALL_CENTER_DISTANCE - HALF_BALL
+X_WALL_BALL_LIMIT = X_WALL_CENTER_DISTANCE
 RIGHT_WALL = X_WALL_BALL_LIMIT
 LEFT_WALL = X_WALL_BALL_LIMIT * -1
 #
@@ -84,13 +85,13 @@ screen.onkey(lpaddle.up, "w")
 screen.onkey(lpaddle.down, "s")
 
 
-play = True
-while play:
+gameover = False
+while not gameover:
     screen.update()
     time.sleep(SLEEP_TIME)
     ball.move()
     #
-    #   wall collision
+    #   upper lower wall collision
     #
     if ball.ycor() >= UPPER_WALL:
         ball.ybounce()
@@ -106,5 +107,12 @@ while play:
     #
     if ball.distance(lpaddle) < BALL_PADDLE_COLLISION and ball.xcor() <= LPADDLE_WALL:
         ball.xbounce()
+    #
+    #   left right wall collision
+    #
+    if ball.xcor() > RIGHT_WALL or ball.xcor() < LEFT_WALL:
+        print("out")
+        gameover = True
 
+print("end while")
 screen.exitonclick()
