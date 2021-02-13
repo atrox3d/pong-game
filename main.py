@@ -67,6 +67,19 @@ print(f"RPADDLE_WALL           : {RPADDLE_WALL            }")
 print(f"LPADDLE_WALL           : {LPADDLE_WALL            }")
 print(f"SLEEP_TIME             : {SLEEP_TIME              }")
 
+
+def speedup():
+    global SLEEP_TIME
+    SLEEP_TIME -= 0.01
+    print(f"speedup: SLEEP_TIME = {SLEEP_TIME}")
+
+
+def speeddown():
+    global SLEEP_TIME
+    SLEEP_TIME += 0.01
+    print(f"speeddown: SLEEP_TIME = {SLEEP_TIME}")
+
+
 screen = Screen()
 screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 screen.bgcolor("black")
@@ -81,6 +94,8 @@ ball = Ball()
 screen.listen()
 screen.onkey(rpaddle.up, "Up")
 screen.onkey(rpaddle.down, "Down")
+screen.onkey(speeddown, "Left")
+screen.onkey(speedup, "Right")
 screen.onkey(lpaddle.up, "w")
 screen.onkey(lpaddle.down, "s")
 
