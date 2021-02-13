@@ -1,5 +1,7 @@
 from turtle import Turtle
 
+BALLSTEP = 10
+
 
 class Ball(Turtle):
 
@@ -7,8 +9,8 @@ class Ball(Turtle):
         super().__init__("square")
         self.color("white")
         self.penup()
-        self.xstep = 10
-        self.ystep = 10
+        self.xstep = BALLSTEP
+        self.ystep = BALLSTEP
 
     def move(self):
         x = self.xcor() + self.xstep
@@ -16,5 +18,8 @@ class Ball(Turtle):
 
         self.goto(x, y)
 
-    def bounce(self):
+    def ybounce(self):
         self.ystep *= -1
+
+    def xbounce(self):
+        self.xstep *= -1
