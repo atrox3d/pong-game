@@ -86,14 +86,14 @@ def gameover():
 
 
 screen.listen()
-screen.onkey(rpaddle.up, "Up")
-screen.onkey(rpaddle.down, "Down")
-screen.onkey(ball.speeddown, "Left")
-screen.onkey(ball.speedup, "Right")
-screen.onkey(lpaddle.up, "w")
-screen.onkey(lpaddle.down, "s")
+screen.onkeypress(rpaddle.up, "Up")
+screen.onkeypress(rpaddle.down, "Down")
+screen.onkeypress(ball.speeddown, "Left")
+screen.onkeypress(ball.speedup, "Right")
+screen.onkeypress(lpaddle.up, "w")
+screen.onkeypress(lpaddle.down, "s")
 
-screen.onkey(gameover, "Escape")
+screen.onkeypress(gameover, "Escape")
 
 
 isgameover = False
