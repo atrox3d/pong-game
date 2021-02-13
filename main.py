@@ -78,6 +78,13 @@ print(f"SLEEP_TIME             : {ball.move_speed         }")
 
 scoreboard = ScoreBoard()
 
+
+def gameover():
+    global isgameover
+    isgameover = True
+    scoreboard.gameover()
+
+
 screen.listen()
 screen.onkey(rpaddle.up, "Up")
 screen.onkey(rpaddle.down, "Down")
@@ -86,9 +93,11 @@ screen.onkey(ball.speedup, "Right")
 screen.onkey(lpaddle.up, "w")
 screen.onkey(lpaddle.down, "s")
 
+screen.onkey(gameover, "Escape")
 
-gameover = False
-while not gameover:
+
+isgameover = False
+while not isgameover:
     screen.update()
     time.sleep(ball.move_speed)
     ball.move()
