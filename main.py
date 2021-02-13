@@ -7,6 +7,8 @@ from paddle import Paddle
 #
 #   screen
 #
+from scoreboard import ScoreBoard
+
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 #
@@ -90,6 +92,7 @@ screen.tracer(0)
 rpaddle = Paddle(RPADDLE_POSITION)
 lpaddle = Paddle(LPADDLE_POSITION)
 ball = Ball()
+scoreboard = ScoreBoard()
 
 screen.listen()
 screen.onkey(rpaddle.up, "Up")
@@ -127,11 +130,13 @@ while not gameover:
     #
     if ball.xcor() > RIGHT_WALL:
         ball.reset()
+        scoreboard.lpoint()
     #
     #   left paddle miss
     #
     if ball.xcor() < LEFT_WALL:
         ball.reset()
+        scoreboard.rpoint()
 
 print("end while")
 screen.exitonclick()
