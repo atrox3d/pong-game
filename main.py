@@ -45,10 +45,6 @@ LEFT_WALL = X_WALL_BALL_LIMIT * -1
 BALL_PADDLE_COLLISION = 50
 RPADDLE_WALL = RPADDLE_X - (PADDLE_WIDTH / 2 )
 LPADDLE_WALL = LPADDLE_X - -(PADDLE_WIDTH / 2 )
-#
-#   misc
-#
-SLEEP_TIME = 0.08
 
 print(f"SCREEN_WIDTH           : {SCREEN_WIDTH            }")
 print(f"SCREEN_HEIGHT          : {SCREEN_HEIGHT           }")
@@ -67,20 +63,6 @@ print(f"LEFT_WALL              : {LEFT_WALL               }")
 print(f"BALL_PADDLE_COLLISION  : {BALL_PADDLE_COLLISION   }")
 print(f"RPADDLE_WALL           : {RPADDLE_WALL            }")
 print(f"LPADDLE_WALL           : {LPADDLE_WALL            }")
-print(f"SLEEP_TIME             : {SLEEP_TIME              }")
-
-
-def speedup():
-    global SLEEP_TIME
-    SLEEP_TIME -= 0.01
-    print(f"speedup: SLEEP_TIME = {SLEEP_TIME}")
-
-
-def speeddown():
-    global SLEEP_TIME
-    SLEEP_TIME += 0.01
-    print(f"speeddown: SLEEP_TIME = {SLEEP_TIME}")
-
 
 screen = Screen()
 screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
@@ -92,13 +74,15 @@ screen.tracer(0)
 rpaddle = Paddle(RPADDLE_POSITION)
 lpaddle = Paddle(LPADDLE_POSITION)
 ball = Ball()
+print(f"SLEEP_TIME             : {ball.sleeptime         }")
+
 scoreboard = ScoreBoard()
 
 screen.listen()
 screen.onkey(rpaddle.up, "Up")
 screen.onkey(rpaddle.down, "Down")
-screen.onkey(speeddown, "Left")
-screen.onkey(speedup, "Right")
+screen.onkey(ball.speeddown, "Left")
+screen.onkey(ball.speedup, "Right")
 screen.onkey(lpaddle.up, "w")
 screen.onkey(lpaddle.down, "s")
 
@@ -106,7 +90,7 @@ screen.onkey(lpaddle.down, "s")
 gameover = False
 while not gameover:
     screen.update()
-    time.sleep(SLEEP_TIME)
+    time.sleep(ball.sleeptime)
     ball.move()
     #
     #   upper lower wall collision

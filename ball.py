@@ -11,6 +11,7 @@ class Ball(Turtle):
         self.penup()
         self.xstep = BALLSTEP
         self.ystep = BALLSTEP
+        self.sleeptime = 0.08
 
     def move(self):
         x = self.xcor() + self.xstep
@@ -27,3 +28,14 @@ class Ball(Turtle):
     def reset(self):
         self.goto(0, 0)
         self.xbounce()
+
+    def speedup(self):
+        if self.sleeptime - 0.01 > 0.0:
+            self.sleeptime -= 0.01
+            print(f"speedup: SLEEP_TIME = {self.sleeptime}")
+        else:
+            print(f"speedup: MIN REACH SLEEP_TIME = {self.sleeptime}")
+
+    def speeddown(self):
+        self.sleeptime += 0.01
+        print(f"speeddown: SLEEP_TIME = {self.sleeptime}")
